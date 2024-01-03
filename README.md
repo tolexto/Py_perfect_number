@@ -24,7 +24,7 @@ This Python application is designed to find perfect numbers. A perfect number is
    cd Py_perfect_number
 4. **Run the Application:**
    ```bash
-   python perfect_number_finder.py
+   python Perfect_number.py
    
 ## Usage
 ---
