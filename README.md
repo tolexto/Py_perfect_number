@@ -24,7 +24,7 @@ This Python application is designed to find perfect numbers. A perfect number is
    cd Py_perfect_number
 4. **Run the Application:**
    ```bash
-   python perfect_number_finder.py
+   python Perfect_number.py
    
 ## Usage
 ---
@@ -74,6 +74,6 @@ If you would like to contribute to the development of this Perfect Number Finder
 
 ## License
 ---
-This Perfect Number Finder application is open-source software licensed under the MIT License. Feel free to use, modify, and distribute it as per the terms of the license.
+This Perfect Number Checker application is open-source software licensed under the MIT License. Feel free to use, modify, and distribute it as per the terms of the license.
 
 
