@@ -118,10 +118,10 @@ def funcB():
     if speedmode == "s":
         os.system('cls')
         number = int (input ("Insert num until: "))
-        if number > 15000000:
+        if number > 40000:
             os.system('cls')
             os.system('color 4')
-            print("The limit in this mode is 15000! Please insert lower number.")
+            print("The limit in this mode is 40000! Please insert lower number.")
             time.sleep(1)
             os.system('color 07')
             funcB()
@@ -132,10 +132,10 @@ def funcB():
     elif speedmode == "f":
         os.system("cls")
         number = int (input ("Insert num until: "))
-        if number > 15000000:
+        if number > 40000:
             os.system('cls')
             os.system('color 4')
-            print("The limit in this mode is 15000! Please insert lower number.")
+            print("The limit in this mode is 40000! Please insert lower number.")
             time.sleep(1)
             os.system('color 07')
             funcB()
