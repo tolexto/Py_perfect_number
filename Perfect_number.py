@@ -1,4 +1,5 @@
-﻿import colorama
+﻿from ast import Constant
+import colorama
 from colorama import Fore, Back, Style
 
 def func1():
@@ -8,18 +9,19 @@ def func1():
     for j in range (number-1):
         d=number%(j+1)
         if d == 0:
-            print("Sayı:", number, "\tBölen:", j+1,"\tKalan:", d, Fore.GREEN+"\tSuccess!", Fore.WHITE)
+            print("Number:", number, "\tDivider:", j+1,"\tRemainder:", d, Fore.GREEN+"\tSuccess!", Fore.WHITE)
             multinumbs.append(j+1)
         else:
-            print("Sayı:", number, "\tBölen:", j+1,"\tKalan:", d, Fore.RED+"\tNot Success!", Fore.WHITE)
+            print("Number:", number, "\tDivider:", j+1,"\tRemainder:", d, Fore.RED+"\tNot Success!", Fore.WHITE)
   
-    print ("Tam bölenler list: ", multinumbs)
     length = len (multinumbs)
-    multimulti = int(0)    
-
+    multimulti = int(0)
+    print ("exact divisors ", multinumbs)
     for y in range (length):
         multimulti = multinumbs[-1] + multimulti
         multinumbs.pop()
+        
+    print ("sum of exact divisors:", multimulti)
     
     if multimulti == number:
         print(multimulti, "=", number, Fore.GREEN+"Perfect Number!\n", Fore.WHITE+"Let's Try Again!\n\n")
@@ -38,13 +40,13 @@ def func2():
         for j in range (number-1):
             d=number%(j+1)
             if d == 0:
-                print("Sayı:", number, "\tBölen:", j+1,"\tKalan:", d, Fore.GREEN+"\tSuccess!", Fore.WHITE)
+                print("Sayı:", number, "\tDivider:", j+1,"\tRemainder:", d, Fore.GREEN+"\tSuccess!", Fore.WHITE)
                 multinumbs.append(j+1)
             else:
-                print("Sayı:", number, "\tBölen:", j+1,"\tKalan:", d, Fore.RED+"\tNot Success!", Fore.WHITE)
+                print("Sayı:", number, "\tDivider:", j+1,"\tRemainder:", d, Fore.RED+"\tNot Success!", Fore.WHITE)
         number=number-1
   
-    print ("Tam bölenler list: ", multinumbs)
+    print ("exact divisors list: ", multinumbs)
     
     length = len (multinumbs)
     multimulti = int(0)    
@@ -52,6 +54,7 @@ def func2():
     for y in range (length):
         multimulti = multinumbs[-1] + multimulti
         multinumbs.pop()
+    print ("sum of exact divisors:", multimulti)
     
     if multimulti == number:
         print(multimulti, "=", number, Fore.GREEN+"Perfect Number!", Fore.WHITE)
