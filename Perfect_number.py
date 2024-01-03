@@ -2,21 +2,27 @@
 from colorama import Fore, Back
 import time ## For Calculating Elapsed Time
 import os ## For clean screen or etc
+import sys
 
-def func1():    ## Slow or fast?
+def funcA():    ## Slow or fast?
     
     os.system('cls')
-    speedmode = input("Slow or Fast?:\n\nFor Slow (s), For Fast (f) :)\n\n")
+    speedmode = input("Slow or Fast?\n\nFor Slow (s), For Fast (f) :)\n\n")
     if speedmode == "s":
         os.system('cls')
-        funcnormal()
+        funcANormal()
     elif speedmode == "f":
         os.system('cls')
-        funcspeed()    
-      
-
-def funcnormal():   ## If the choosen mode is a, gets in this function. This function is checking to only inserted number is perfect or not. Normal mode.
-
+        funcAFast()    
+    else:
+        os.system('cls')
+        os.system('color 4')
+        print("Wrong input!")
+        time.sleep(0.5)
+        os.system('color 07')
+        funcA()
+        
+def funcANormal():   ## If the choosen mode is a, gets in this function. This function is checking to only inserted number is perfect or not. Normal mode.
     number = int (input ("insert num: ")) ## User input
     multinumbs = [] ## Array of multipliers list
     start = time.time()
@@ -61,7 +67,7 @@ def funcnormal():   ## If the choosen mode is a, gets in this function. This fun
             case "n":
                 return(exit)             
     
-def funcspeed():    ## If the choosen mode is a, gets in this function. This function is checking to only inserted number is perfect or not. Fast mode.
+def funcAFast():    ## If the choosen mode is a, gets in this function. This function is checking to only inserted number is perfect or not. Fast mode.
 
     number = int (input ("insert num: ")) ## User input
     multinumbs = [] ## Array of multipliers list
@@ -103,12 +109,52 @@ def funcspeed():    ## If the choosen mode is a, gets in this function. This fun
                 main()  ## Goes back to the choosing mode screen. 
             case "n":
                 return(exit)
-                
-def func2():
-    rangeperfects= []
+global perf
+perf = rangeperfects= []  
+
+def funcB():
+    os.system("cls")
+    speedmode = input("Slow or Fast?\n\nFor Slow (s), For Fast (f) :)\n\n")
+    if speedmode == "s":
+        os.system('cls')
+        number = int (input ("Insert num until: "))
+        if number > 15000000:
+            os.system('cls')
+            os.system('color 4')
+            print("The limit in this mode is 15000! Please insert lower number.")
+            time.sleep(1)
+            os.system('color 07')
+            funcB()
+        else:
+            funcBNormal(number)
+            os.system("cls")
+
+    elif speedmode == "f":
+        os.system("cls")
+        number = int (input ("Insert num until: "))
+        if number > 15000000:
+            os.system('cls')
+            os.system('color 4')
+            print("The limit in this mode is 15000! Please insert lower number.")
+            time.sleep(1)
+            os.system('color 07')
+            funcB()
+        else:
+            funcBFast(number)
+            os.system("cls")
+    
+    else:
+        os.system('cls')
+        os.system('color 4')
+        print("Wrong input!")
+        time.sleep(0.5)
+        os.system('color 07')
+        funcB()
+    
+def funcBNormal(number):
+    
     multinumbs = []
-    number = int (input ("insert num until: "))
-    for a in range (number):
+    if number > 1:       
         for j in range (number-1):
             d=number%(j+1)
             if d == 0:
@@ -116,39 +162,95 @@ def func2():
                 multinumbs.append(j+1)
             else:
                 print("Sayı:", number, "\tDivider:", j+1,"\tRemainder:", d, Fore.RED+"\tNot Success!", Fore.WHITE)
-        number=number-1
   
-    print ("exact divisors list: ", multinumbs)
+        print ("exact divisors list: ", multinumbs)
     
-    length = len (multinumbs)
-    multimulti = int(0)    
-
-    for y in range (length):
-        multimulti = multinumbs[-1] + multimulti
-        multinumbs.pop()
-    print ("sum of exact divisors:", multimulti)
+        length = len (multinumbs)
+        multimulti = int(0)   
+        for y in range (length):
+            
+            multimulti = multinumbs[-1] + multimulti
+            multinumbs.pop()
+            
+        print ("sum of exact divisors:", multimulti)
+ 
+        if multimulti == number:
+            print(multimulti, "=", number, Fore.GREEN+"Perfect Number!", Fore.WHITE)
+            rangeperfects.append(number)
+            funcBNormal(number-1)
+            
+        elif multimulti != number:
+            print(multimulti, "≠", number, Fore.RED+"Not Perfect Number", Fore.WHITE)
+            funcBNormal(number-1)
+        else:
+            print("Something Wrong?")
+    elif number == 1:
+        print("\n", Back.LIGHTBLUE_EX, rangeperfects, Back.BLACK, "\n\nTry Again?\n")
+        tagain = input("(y/n)?\t-\t")
+        match tagain:
+            case "y":
+                start = 0
+                end = 0
+                os.system('cls')
+                main()  ## Goes back to the choosing mode screen. 
+            case "n":
+                return(exit)
+    else:
+        print("?")
+ 
+def funcBFast(number):
     
-    if multimulti == number:
-        print(multimulti, "=", number, Fore.GREEN+"Perfect Number!", Fore.WHITE)
-        rangeperfects.append(number)
-        
-        
-    elif multimulti != number:
-        print(multimulti, "≠", number, Fore.RED+"Not Perfect Number", Fore.WHITE)
-        
-    
-    print(rangeperfects)   
+    multinumbs = []
+    if number > 1:       
+        for j in range (number-1):
+            d=number%(j+1)
+            if d == 0:
+                multinumbs.append(j+1)
+        length = len (multinumbs)
+        multimulti = int(0)   
+        for y in range (length):   
+            multimulti = multinumbs[-1] + multimulti
+            multinumbs.pop()          
+        if multimulti == number:
+            rangeperfects.append(number)
+            funcBFast(number-1)          
+        elif multimulti != number:
+            funcBFast(number-1)
+        else:
+            print("Something Wrong?")
+    elif number == 1:
+        print("\n", Back.LIGHTBLUE_EX, rangeperfects, Back.BLACK, "\n\nTry Again?\n")
+        tagain = input("(y/n)?\t-\t")
+        match tagain:
+            case "y":
+                start = 0
+                end = 0
+                os.system('cls')
+                main()  ## Goes back to the choosing mode screen. 
+            case "n":
+                return(exit)
+    else:
+        print("?")
     
 def main():
+    os.system("cls")
+    sys.setrecursionlimit(155000)
     option = input("a or b:\n\nTip: c for exit :)\n\n")
-    if option == "a":
-        func1()
-    elif option== "b":
-        func2()    
-    elif option== "c":
-        quit()      
+    if option == "a" or option == "A":
+        funcA()
+    elif option == "b" or option == "B":
+        rangeperfects.clear()
+        funcB()    
+    elif option == "c" or option == "C":
+        quit()
+    elif option == "d":
+        print(sys.getrecursionlimit())
     else:
-        print("please write a, b or c!")
+        os.system('cls')
+        os.system('color 4')
+        print("Wrong input!")
+        time.sleep(0.5)
+        os.system('color 07')
         main()
 
 main()
